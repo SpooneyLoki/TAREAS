@@ -8,26 +8,26 @@ import { Empleado } from '../models/empleado';
 export class EmpleadoService {
   selectedEmpleado: Empleado;
   empleados: Empleado[];
-  readonly URL_API = 'http://localhost:3000/api/empleados';
+  readonly URL_API = 'https://tareas-ten.vercel.app/api/empleados';
 
   constructor(private http: HttpClient) {
     this.selectedEmpleado = new Empleado();
     this.empleados = [];
   }
 
-  getEmpleados() {
+  obtenerEmpleados() {
     return this.http.get<Empleado[]>(this.URL_API);
   }
 
-  postEmpleado(empleado: Empleado) {
+  crearEmpleado(empleado: Empleado) {
     return this.http.post(this.URL_API, empleado);
   }
 
-  putEmpleado(empleado: Empleado) {
+  actualizarEmpleado(empleado: Empleado) {
     return this.http.put(this.URL_API + `/${empleado._id}`, empleado);
   }
 
-  deleteEmpleado(_id: string) {
+  eliminarEmpleado(_id: string) {
     return this.http.delete(this.URL_API + `/${_id}`);
   }
 }
