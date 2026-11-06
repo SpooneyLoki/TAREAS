@@ -8,59 +8,51 @@
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="empleadoService.selectedEmpleado._id">
             
             <div class="mb-3">
-              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.nombre" placeholder="Nombre completo" class="form-control" required>
+              <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.nombre" placeholder="Nombre completo">
             </div>
-            
+
             <div class="mb-3">
-              <input type="text" name="cargo" #cargo="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.cargo" placeholder="Cargo que desempeña" class="form-control" required>
+              <input type="text" class="form-control" name="cargo" #cargo="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.cargo" placeholder="Cargo que desempeña">
             </div>
-            
+
             <div class="mb-3">
-              <input type="text" name="oficina" #oficina="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.oficina" placeholder="Oficina o sede" class="form-control" required>
+              <input type="text" class="form-control" name="oficina" #oficina="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.oficina" placeholder="Oficina o sede">
             </div>
-            
+
             <div class="mb-3">
-              <input type="number" name="salario" #salario="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.salario" placeholder="Salario" class="form-control" required>
+              <input type="number" class="form-control" name="salario" #salario="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.salario" placeholder="Salario">
             </div>
-            
-            <div class="d-flex gap-2">
-              <button class="btn btn-primary btn-sm" type="submit">Guardar</button>
-              <button class="btn btn-secondary btn-sm" type="button" (click)="resetForm(empleadoForm)">Limpiar</button>
-            </div>
+
+            <button class="btn btn-primary me-2" type="submit">Guardar</button>
+            <button class="btn btn-secondary" type="button" (click)="resetForm(empleadoForm)">Limpiar</button>
           </form>
         </div>
       </div>
     </div>
 
-    <!-- Tabla para Listar Registros -->
+    <!-- Tabla de Listado de Empleados -->
     <div class="col-md-7">
-      <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Cargo</th>
-              <th>Oficina</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let empleado of empleadoService.empleados">
-              <td>{{ empleado.nombre }}</td>
-              <td>{{ empleado.cargo }}</td>
-              <td>{{ empleado.oficina }}</td>
-              <td>
-                <button class="btn btn-secondary btn-sm me-1" (click)="editarEmpleado(empleado)">
-                  <span class="material-icons" style="font-size: 16px; vertical-align: middle;">edit</span>
-                </button>
-                <button class="btn btn-danger btn-sm" (click)="eliminarEmpleado(empleado._id, empleadoForm)">
-                  <span class="material-icons" style="font-size: 16px; vertical-align: middle;">delete</span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Oficina</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleadoService.empleados">
+            <td>{{ empleado.nombre }}</td>
+            <td>{{ empleado.cargo }}</td>
+            <td>{{ empleado.oficina }}</td>
+            <td>
+              <button class="btn btn-secondary btn-sm me-1" (click)="editarEmpleado(empleado)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="eliminarEmpleado(empleado._id!)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
